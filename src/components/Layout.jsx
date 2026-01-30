@@ -1,124 +1,182 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
     Scale,
     Menu,
     X,
     Bot,
-    MessageSquare
+    MessageSquare,
+    ChevronRight,
+    Phone,
+    MapPin,
+    Mail
 } from 'lucide-react';
 
 const Layout = ({ children }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
     const location = useLocation();
 
-    // Helper to determining if link is active (simple version)
+    // Handle scroll effect for navbar
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     const isActive = (path) => location.pathname === path;
 
     return (
-        <div className="min-h-screen font-sans selection:bg-[#778ca4] selection:text-white bg-white">
+        <div className="min-h-screen flex flex-col font-sans text-slate-800 bg-slate-50">
             {/* Navigation */}
-            <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+            <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-lg py-2' : 'bg-transparent py-4'}`}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between h-20 items-center">
-                        <Link to="/" className="flex items-center gap-2">
-                            <div className="p-2 bg-[#313c45] rounded-lg">
+                    <div className="flex justify-between items-center h-16">
+                        {/* Logo */}
+                        <Link to="/" className="flex items-center gap-3 group">
+                            <div className="p-2.5 bg-slate-900 rounded-xl group-hover:bg-[#b8860b] transition-colors duration-300 shadow-lg">
                                 <Scale className="text-white w-6 h-6" />
                             </div>
-                            <span className="text-xl font-bold tracking-tight text-[#313c45]">
-                                LEGAL<span className="text-[#778ca4]">PRO</span>
-                            </span>
+                            <div className="flex flex-col">
+                                <span className={`text-xl font-bold tracking-tight leading-none ${scrolled ? 'text-slate-900' : 'text-slate-900 lg:text-white'}`}>
+                                    LEGAL<span className="text-[#b8860b]">PRO</span>
+                                </span>
+                                <span className={`text-[10px] tracking-widest uppercase ${scrolled ? 'text-slate-500' : 'text-slate-400 lg:text-slate-200'}`}>Legalitas Terpercaya</span>
+                            </div>
                         </Link>
 
+                        {/* Desktop Menu */}
                         <div className="hidden md:flex items-center gap-8">
-                            <Link to="/" className={`text-sm font-medium transition-colors ${isActive('/') ? 'text-[#778ca4]' : 'text-[#313c45] hover:text-[#778ca4]'}`}>Layanan</Link>
-                            <Link to="/tentang-kami" className={`text-sm font-medium transition-colors ${isActive('/tentang-kami') ? 'text-[#778ca4]' : 'text-[#313c45] hover:text-[#778ca4]'}`}>Tentang Kami</Link>
-                            <Link to="/pricelist" className={`text-sm font-medium transition-colors ${isActive('/pricelist') ? 'text-[#778ca4]' : 'text-[#313c45] hover:text-[#778ca4]'}`}>Pricelist</Link>
-                            <a href="#ai-assistant" className="text-sm font-medium text-[#778ca4] flex items-center gap-1">
-                                <Bot size={16} /> AI Assistant
+                            {['/', '/tentang-kami', '/pricelist'].map((path) => (
+                                <Link
+                                    key={path}
+                                    to={path}
+                                    className={`text-sm font-medium transition-all duration-300 relative py-1 after:content-[''] after:absolute after:w-0 after:h-[2px] after:bg-[#b8860b] after:bottom-0 after:left-0 after:transition-all hover:after:w-full
+                                    ${isActive(path) ? 'text-[#b8860b] after:w-full' : (scrolled ? 'text-slate-600 hover:text-slate-900' : 'text-white/90 hover:text-white')}`}
+                                >
+                                    {path === '/' ? 'Layanan' : path.replace('/', '').replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                                </Link>
+                            ))}
+
+                            <a href="#ai-assistant" className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all ${scrolled ? 'border-slate-200 text-slate-600 hover:border-[#b8860b] hover:text-[#b8860b]' : 'border-white/20 text-white hover:bg-white/10'}`}>
+                                <Bot size={16} /> <span className="text-xs font-semibold">AI Assistant</span>
                             </a>
-                            <button className="px-5 py-2.5 bg-[#313c45] text-white text-sm font-medium rounded-full hover:bg-[#778ca4] transition-all shadow-lg shadow-slate-200">
+
+                            <button className="px-6 py-2.5 bg-[#b8860b] text-white text-sm font-semibold rounded-full hover:bg-[#9a7009] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 shadow-md shadow-orange-900/10">
                                 Konsultasi Gratis
                             </button>
                         </div>
 
+                        {/* Mobile Toggle */}
                         <div className="md:hidden">
-                            <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={`p-2 rounded-lg ${scrolled ? 'text-slate-900' : 'text-slate-900 lg:text-white'}`}>
                                 {isMenuOpen ? <X /> : <Menu />}
                             </button>
                         </div>
                     </div>
                 </div>
 
-                {/* Mobile Menu */}
-                {isMenuOpen && (
-                    <div className="md:hidden bg-white border-t border-slate-100 p-4 shadow-lg">
-                        <div className="flex flex-col gap-4">
-                            <Link to="/" onClick={() => setIsMenuOpen(false)} className="text-sm font-medium text-[#313c45]">Layanan</Link>
-                            <Link to="/tentang-kami" onClick={() => setIsMenuOpen(false)} className="text-sm font-medium text-[#313c45]">Tentang Kami</Link>
-                            <Link to="/pricelist" onClick={() => setIsMenuOpen(false)} className="text-sm font-medium text-[#313c45]">Pricelist</Link>
-                        </div>
-                    </div>
-                )}
+                {/* Mobile Menu Overlay */}
+                <div className={`fixed inset-0 bg-slate-900/95 z-40 transition-transform duration-300 md:hidden flex flex-col items-center justify-center gap-8 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+                    {['/', '/tentang-kami', '/pricelist'].map((path) => (
+                        <Link
+                            key={path}
+                            to={path}
+                            onClick={() => setIsMenuOpen(false)}
+                            className="text-2xl font-serif text-white hover:text-[#b8860b] transition-colors"
+                        >
+                            {path === '/' ? 'Layanan' : path.replace('/', '').replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                        </Link>
+                    ))}
+                    <button className="mt-4 px-8 py-3 bg-[#b8860b] text-white rounded-full font-bold">
+                        Mulai Konsultasi
+                    </button>
+                </div>
             </nav>
 
-            <main>
+            <main className="flex-grow">
                 {children}
             </main>
 
             {/* Footer */}
-            <footer className="bg-[#f8fafc] py-16">
-                <div className="max-w-7xl mx-auto px-4">
-                    <div className="grid md:grid-cols-4 gap-12 mb-12">
-                        <div className="col-span-2">
-                            <div className="flex items-center gap-2 mb-6">
-                                <div className="p-1.5 bg-[#313c45] rounded-md">
-                                    <Scale className="text-white w-5 h-5" />
-                                </div>
-                                <span className="text-lg font-bold tracking-tight text-[#313c45]">
-                                    LEGAL<span className="text-[#778ca4]">PRO</span>
+            <footer className="bg-slate-900 text-slate-300 pt-20 pb-10 relative overflow-hidden">
+                {/* Decoration */}
+                <div className="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-[#b8860b]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div className="max-w-7xl mx-auto px-4 relative z-10">
+                    <div className="grid md:grid-cols-4 gap-12 mb-16">
+                        <div className="col-span-2 space-y-6">
+                            <div className="flex items-center gap-2">
+                                <Scale className="text-[#b8860b] w-8 h-8" />
+                                <span className="text-2xl font-bold tracking-tight text-white font-serif">
+                                    LEGAL<span className="text-[#b8860b]">PRO</span>
                                 </span>
                             </div>
-                            <p className="text-slate-500 text-sm max-w-sm leading-relaxed">
-                                Penyedia jasa legalitas badan usaha dengan pengalaman kerja di kantor Notaris. Memberikan kepastian hukum dan kemudahan bagi pengusaha di seluruh Indonesia.
+                            <p className="text-slate-400 text-sm max-w-md leading-relaxed">
+                                Kami menghadirkan solusi legalitas bisnis dengan standar korporasi profesional. Membantu pengusaha Indonesia bertumbuh dengan pondasi hukum yang kuat.
                             </p>
+                            <div className="flex gap-4 pt-2">
+                                {/* Social placeholders */}
+                                <div className="w-10 h-10 rounded-full bg-white/5 hover:bg-[#b8860b] flex items-center justify-center transition-colors cursor-pointer">
+                                    <span className="font-bold">IG</span>
+                                </div>
+                                <div className="w-10 h-10 rounded-full bg-white/5 hover:bg-[#b8860b] flex items-center justify-center transition-colors cursor-pointer">
+                                    <span className="font-bold">LN</span>
+                                </div>
+                            </div>
                         </div>
+
                         <div>
-                            <h5 className="font-bold text-[#313c45] mb-6">Tautan Cepat</h5>
-                            <ul className="space-y-4 text-sm text-slate-500">
-                                <li><Link to="/layanan/pt-perorangan" className="hover:text-[#778ca4]">Pendirian PT</Link></li>
-                                <li><Link to="/layanan/cv" className="hover:text-[#778ca4]">Pendirian CV</Link></li>
-                                <li><Link to="/pricelist" className="hover:text-[#778ca4]">Pricelist</Link></li>
-                                <li><Link to="/tentang-kami" className="hover:text-[#778ca4]">Kontak</Link></li>
+                            <h5 className="font-bold text-white mb-6 font-serif tracking-wide">Layanan</h5>
+                            <ul className="space-y-4 text-sm">
+                                <li><Link to="/layanan/pt-perorangan" className="hover:text-[#b8860b] transition-colors flex items-center gap-2"><ChevronRight size={14} /> Pendirian PT</Link></li>
+                                <li><Link to="/layanan/cv" className="hover:text-[#b8860b] transition-colors flex items-center gap-2"><ChevronRight size={14} /> Pendirian CV</Link></li>
+                                <li><Link to="/pricelist" className="hover:text-[#b8860b] transition-colors flex items-center gap-2"><ChevronRight size={14} /> Izin Usaha (NIB)</Link></li>
+                                <li><Link to="/layanan/pt-pma" className="hover:text-[#b8860b] transition-colors flex items-center gap-2"><ChevronRight size={14} /> Konsultasi Hukum</Link></li>
                             </ul>
                         </div>
+
                         <div>
-                            <h5 className="font-bold text-[#313c45] mb-6">Kontak</h5>
-                            <ul className="space-y-4 text-sm text-slate-500">
-                                <li>hello@legalpro.id</li>
-                                <li>+62 812 3456 7890</li>
-                                <li>Jakarta Selatan, Indonesia</li>
+                            <h5 className="font-bold text-white mb-6 font-serif tracking-wide">Kantor Kami</h5>
+                            <ul className="space-y-4 text-sm">
+                                <li className="flex gap-3 items-start">
+                                    <MapPin className="text-[#b8860b] shrink-0" size={18} />
+                                    <span>Menara Sudirman Lt. 15<br />Jl. Jend. Sudirman Kav. 60<br />Jakarta Selatan 12190</span>
+                                </li>
+                                <li className="flex gap-3 items-center">
+                                    <Mail className="text-[#b8860b] shrink-0" size={18} />
+                                    <span>hello@legalpro.id</span>
+                                </li>
+                                <li className="flex gap-3 items-center">
+                                    <Phone className="text-[#b8860b] shrink-0" size={18} />
+                                    <span>+62 21 5555 8888</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
-                    <div className="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between gap-4 text-xs text-slate-400 font-medium">
+
+                    <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
                         <p>© 2024 LegalPro Indonesia. All rights reserved.</p>
-                        <div className="flex gap-6">
-                            <Link to="/privacy">Privacy Policy</Link>
-                            <Link to="/terms">Terms of Service</Link>
+                        <div className="flex gap-8">
+                            <Link to="#" className="hover:text-white transition-colors">Privacy Policy</Link>
+                            <Link to="#" className="hover:text-white transition-colors">Terms of Service</Link>
+                            <Link to="#" className="hover:text-white transition-colors">Disclaimer</Link>
                         </div>
                     </div>
                 </div>
             </footer>
 
-            {/* Floating CTA (WhatsApp) */}
-            <div className="fixed bottom-6 right-6 z-50">
-                <button className="flex items-center gap-2 p-4 bg-green-500 text-white rounded-full shadow-2xl hover:bg-green-600 hover:scale-105 transition-all group">
-                    <MessageSquare fill="white" />
-                    <span className="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 whitespace-nowrap font-bold">
-                        WhatsApp Kami
+            {/* Floating CTA */}
+            <div className="fixed bottom-8 right-8 z-40">
+                <a href="https://wa.me/" target="_blank" rel="noreferrer" className="flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-2xl hover:scale-110 hover:shadow-[#25D366]/40 transition-all duration-300 relative group">
+                    <div className="absolute inset-0 bg-white/20 rounded-full animate-ping opacity-75"></div>
+                    <MessageSquare fill="white" size={24} className="relative z-10" />
+                    <span className="absolute right-16 bg-white text-slate-800 px-3 py-1 rounded-lg text-xs font-bold shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                        Chat WhatsApp
                     </span>
-                </button>
+                </a>
             </div>
         </div>
     );
