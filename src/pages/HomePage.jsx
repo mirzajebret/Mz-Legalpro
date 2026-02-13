@@ -35,7 +35,7 @@ const HomePage = () => {
             icon: <Building className="w-6 h-6" />,
             image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=600",
             category: "utama",
-            price: "Mulai 3.5jt"
+            price: "Mulai 5.9jt"
         },
         {
             id: 'pt-perorangan',
@@ -51,36 +51,45 @@ const HomePage = () => {
             title: "Pendirian CV",
             desc: "Pilihan ekonomis dan fleksibel untuk memulai usaha kemitraan.",
             icon: <Briefcase className="w-6 h-6" />,
-            image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=600",
+            image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=500&auto=format&fit=crop&q=80&w=600",
             category: "utama",
-            price: "Mulai 2.5jt"
+            price: "Mulai 4.5jt"
         },
         {
             id: 'pt-pma',
             title: "PT PMA (Asing)",
             desc: "Layanan penuh untuk investor asing yang ingin berbisnis di Indonesia.",
             icon: <Globe className="w-6 h-6" />,
-            image: "https://images.unsplash.com/photo-1526304640152-d4619684e484?auto=format&fit=crop&q=80&w=600",
+            image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=500&auto=format&fit=crop&q=80&w=600",
             category: "utama",
             price: "Custom"
         },
         {
-            id: 'npwp',
-            title: "Paket Perizinan",
-            desc: "Termasuk NPWP, NIB, dan Izin Lokasi dalam satu paket hemat.",
-            icon: <FileText className="w-6 h-6" />,
-            image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=600",
-            category: "addon",
-            price: "Bundling"
+            id: 'Koperasi',
+            title: "Pendirian Koperasi",
+            desc: "Layanan penuh untuk pendirian Koperasi di Indonesia.",
+            icon: <Globe className="w-6 h-6" />,
+            image: "https://images.unsplash.com/photo-1551836022-8b2858c9c69b?w=500&auto=format&fit=crop&q=80&w=600",
+            category: "utama",
+            price: "Mulai 5.5jt"
         },
         {
-            id: 'virtual-office',
-            title: "Virtual Office",
-            desc: "Alamat bisnis prestisius di SCBD & Kuningan untuk citra perusahaan.",
-            icon: <Building className="w-6 h-6" />,
-            image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=600",
+            id: 'nib-npwp',
+            title: "Penerbitan NIB",
+            desc: "Penerbitan NIB untuk usaha Anda, ter-RDTR maupun non-RDTR.",
+            icon: <FileText className="w-6 h-6" />,
+            image: "/assets/images/addon/addon-nib.webp",
             category: "addon",
-            price: "Mulai 2.5jt/thn"
+            price: "Mulai 1.5jt"
+        },
+        {
+            id: 'nib-npwp',
+            title: "Pembuatan NPWP",
+            desc: "Pengurusan pembuatan NPWP baik untuk perorangan maupun badan usaha.",
+            icon: <FileText className="w-6 h-6" />,
+            image: "/assets/images/addon/addon-npwp.png",
+            category: "addon",
+            price: "Mulai 150rb"
         }
     ];
 
@@ -125,7 +134,7 @@ const HomePage = () => {
 
                             <div className="flex flex-col sm:flex-row gap-4 pt-4">
                                 <button className="px-8 py-4 bg-[#b8860b] hover:bg-[#9a7009] text-white rounded-xl font-bold hover:shadow-xl hover:shadow-[#b8860b]/20 hover:-translate-y-1 transition-all flex items-center justify-center gap-2">
-                                    Mulai Sekarang <ArrowRight size={18} />
+                                    Selengkapnya <ArrowRight size={18} />
                                 </button>
                                 <button className="px-8 py-4 bg-white/5 backdrop-blur-sm border border-white/20 text-white hover:bg-white/10 rounded-xl font-bold transition-all flex items-center justify-center gap-2 group">
                                     <MessageSquare size={18} /> Konsultasi Gratis
@@ -164,8 +173,8 @@ const HomePage = () => {
 
                             <div className="absolute bottom-20 left-10 w-80 p-6 bg-slate-800/90 backdrop-blur-xl border border-slate-700 rounded-2xl shadow-2xl animate-in fade-in zoom-in duration-1000 delay-500 z-20">
                                 <div className="flex justify-between items-start mb-6">
-                                    <div className="p-3 bg-[#b8860b]/20 rounded-lg">
-                                        <Scale className="text-[#b8860b]" size={24} />
+                                    <div className="p-3 bg-[#b8860b]/20 rounded-full">
+                                        <Scale className="text-amber-400" size={24} />
                                     </div>
                                     <span className="px-3 py-1 bg-white/10 rounded-full text-xs text-white">Legalitas</span>
                                 </div>
@@ -199,7 +208,7 @@ const HomePage = () => {
                                 onClick={() => setActiveTab('addon')}
                                 className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all ${activeTab === 'addon' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-500 hover:text-slate-900'}`}
                             >
-                                Izin & Kantor Virtual
+                                Pengurusan NIB & NPWP
                             </button>
                         </div>
                     </div>
@@ -225,15 +234,9 @@ const HomePage = () => {
                                     </p>
 
                                     <div className="mt-auto pt-6 border-t border-slate-100">
-                                        {item.category === 'utama' ? (
-                                            <Link to={`/layanan/${item.id}`} className="flex items-center justify-between text-slate-700 font-semibold text-sm group-hover:text-[#b8860b] transition-colors">
-                                                Lihat Detail <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
-                                            </Link>
-                                        ) : (
-                                            <Link to="/pricelist" className="flex items-center justify-between text-slate-700 font-semibold text-sm group-hover:text-[#b8860b] transition-colors">
-                                                Cek Harga <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
-                                            </Link>
-                                        )}
+                                        <Link to={`/layanan/${item.id}`} className="flex items-center justify-between text-slate-700 font-semibold text-sm group-hover:text-[#b8860b] transition-colors">
+                                            {item.category === 'utama' ? 'Selengkapnya' : 'Cek Harga'} <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
@@ -367,7 +370,7 @@ const HomePage = () => {
                                         <button
                                             onClick={askAi}
                                             disabled={isAiLoading}
-                                            className="absolute right-2 top-2 p-1.5 bg-[#b8860b] text-white rounded-lg hover:bg-[#9a7009] disabled:opacity-50 transition-all"
+                                            className="absolute right-2 top-2 p-2 bg-green-500 text-white rounded-lg hover:bg-green-600 disabled:opacity-50 transition-all"
                                         >
                                             <ArrowRight size={16} />
                                         </button>
@@ -384,7 +387,7 @@ const HomePage = () => {
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="grid md:grid-cols-2 gap-16 items-center">
                         <div className="relative">
-                            <div className="absolute -inset-4 bg-[#b8860b]/20 rounded-[2rem] -rotate-3 blur-md"></div>
+                            <div className="absolute -inset-4 bg-blue-400/20 rounded-[2rem] -rotate-3 blur-md"></div>
                             <img
                                 src={officeImage}
                                 alt="Professional Team"
@@ -394,12 +397,12 @@ const HomePage = () => {
                                 <div className="flex gap-1 mb-2">
                                     {[1, 2, 3, 4, 5].map(i => <Star key={i} size={16} className="fill-[#fcd34d] text-[#fcd34d]" />)}
                                 </div>
-                                <p className="text-slate-600 text-sm italic">"Proses sangat cepat, dalam 3 hari SK Kemenkumham sudah terbit. Pelayanan sangat responsif!"</p>
+                                <p className="text-slate-600 text-sm italic">"Proses sangat cepat, dalam 1 hari SK Kemenkum sudah terbit. Pelayanan sangat responsif!"</p>
                                 <div className="mt-4 flex items-center gap-3">
                                     <div className="w-8 h-8 bg-slate-200 rounded-full"></div>
                                     <div>
-                                        <p className="font-bold text-slate-900 text-xs">Budi Santoso</p>
-                                        <p className="text-slate-500 text-[10px]">CEO PT Digital Kreatif</p>
+                                        <p className="font-bold text-slate-900 text-xs">Alif S.</p>
+                                        <p className="text-slate-500 text-[10px]">PT Digi Kreatif</p>
                                     </div>
                                 </div>
                             </div>
@@ -419,7 +422,7 @@ const HomePage = () => {
                                     </div>
                                     <div>
                                         <h4 className="text-lg font-bold text-slate-900">Jaminan Keabsahan 100%</h4>
-                                        <p className="text-slate-500 text-sm">Dokumen diterbitkan langsung oleh instansi terkait (Kemenkumham, BKPM).</p>
+                                        <p className="text-slate-500 text-sm">Dokumen diterbitkan langsung oleh instansi terkait (Kemenkum, BKPM, KPP).</p>
                                     </div>
                                 </div>
                                 <div className="flex gap-4">

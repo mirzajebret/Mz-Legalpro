@@ -7,16 +7,15 @@ const PricelistPage = () => {
             category: "Pendirian Badan Usaha",
             items: [
                 { name: "Pendirian PT Perorangan", price: "Rp 1.500.000", desc: "Cocok untuk UMK pemula", features: ["Sertifikat Pendirian", "NPWP Badan", "NIB (OSS RBA)", "Draft Surat Pernyataan"] },
-                { name: "Pendirian CV", price: "Rp 2.500.000", desc: "Pilihan hemat kemitraan", popular: true, features: ["Akta Notaris", "SK Kemenkumham", "NPWP Badan", "NIB (OSS RBA)", "Merek Dagang (Cek)"] },
-                { name: "Pendirian PT Biasa", price: "Rp 3.500.000", desc: "Standard perusahaan bonafit", features: ["Akta Notaris", "SK Kemenkumham", "NPWP Badan", "NIB (OSS RBA)", "BNRI (Optional)"] },
+                { name: "Pendirian CV", price: "Rp 2.500.000", desc: "Pilihan hemat kemitraan", popular: true, features: ["Akta Notaris", "SK Kemenkum", "NPWP Badan", "NIB (OSS RBA)", "Merek Dagang (Cek)"] },
+                { name: "Pendirian PT Biasa", price: "Rp 3.500.000", desc: "Standard perusahaan bonafit", features: ["Akta Notaris", "SK Kemenkum", "NPWP Badan", "NIB (OSS RBA)", "BNRI (Optional)"] },
             ]
         },
         {
             category: "Layanan Khusus",
             items: [
-                { name: "Yayasan / Perkumpulan", price: "Rp 4.000.000", desc: "Badan hukum sosial/non-profit", features: ["Akta Notaris", "SK Kemenkumham", "NPWP Badan", "NIB"] },
+                { name: "Yayasan / Perkumpulan", price: "Rp 4.000.000", desc: "Badan hukum sosial/non-profit", features: ["Akta Notaris", "SK Kemenkum", "NPWP Badan", "NIB"] },
                 { name: "PT PMA (Asing)", price: "Mulai Rp 15jt", desc: "Penanaman Modal Asing", features: ["Akta & SK", "NIB", "Laporan LKPM", "Izin Lokasi", "Konsultasi BKPM"] },
-                { name: "Virtual Office", price: "Rp 2.5jt / Thn", desc: "Alamat bisnis premium", features: ["Alamat Zonasi Perkantoran", "Mail Handling", "Receptionist", "Shared Meeting Room"] },
             ]
         }
     ];

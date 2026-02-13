@@ -1,95 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { CheckCircle2, Star, ArrowLeft, Shield, FileText, Clock } from 'lucide-react';
+import { CheckCircle2, Star, ArrowLeft, Shield, FileText, Clock, AlertCircle } from 'lucide-react';
+import { getServiceById } from '../data/servicesData';
 
 const ServiceDetailPage = () => {
     const { id } = useParams();
     const [serviceData, setServiceData] = useState(null);
 
-    // Enhanced Mock Data
-    const servicesDB = {
-        'pt-biasa': {
-            title: "Pendirian PT (Perseroan Terbatas)",
-            heroImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200",
-            desc: "Badan usaha berbadan hukum yang modalnya terdiri dari saham-saham. Memberikan perlindungan aset pribadi pemegang saham.",
-            benefits: ["Aset pribadi aman (terpisah)", "Lebih bonafit di mata klien", "Bisa ikut tender pemerintah"],
-            timeline: "3-5 Hari Kerja",
-            packages: [
-                {
-                    name: "LITE",
-                    price: "Rp 3.500.000",
-                    features: ["Pengecekan Nama PT", "Akta Pendirian Notaris", "SK Kemenkumham", "NPWP Badan", "NIB (OSS RBA)"]
-                },
-                {
-                    name: "PRO",
-                    price: "Rp 5.500.000",
-                    recommended: true,
-                    features: ["Semua fitur LITE", "BNRI (Berita Negara)", "Rekening Bank Perusahaan", "Stempel Perusahaan", "Draft Perjanjian Pemegang Saham"]
-                },
-                {
-                    name: "COMPLETE",
-                    price: "Rp 8.000.000",
-                    features: ["Semua fitur PRO", "Virtual Office (1 Tahun)", "PKP (Pengusaha Kena Pajak)", "EFIN Badan"]
-                }
-            ]
-        },
-        'pt-perorangan': {
-            title: "Pendirian PT Perorangan",
-            heroImage: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1200",
-            desc: "Solusi revolusioner UU Cipta Kerja. Badan usaha berbadan hukum yang didirikan oleh 1 orang saja untuk Usaha Mikro & Kecil.",
-            benefits: ["Hanya butuh 1 orang pendiri", "Proses sangat cepat (1 hari)", "Pemisahan harta pribadi & usaha"],
-            timeline: "1-2 Hari Kerja",
-            packages: [
-                {
-                    name: "BASIC",
-                    price: "Rp 1.500.000",
-                    features: ["Pernyataan Pendirian", "Sertifikat Kemenkumham", "NPWP Badan", "NIB (OSS RBA)"]
-                },
-                {
-                    name: "PRO",
-                    price: "Rp 2.500.000",
-                    recommended: true,
-                    features: ["Semua fitur BASIC", "Stempel Perusahaan", "Rekening Bank", "Laporan Pajak Nihil (1 Thn)"]
-                }
-            ]
-        },
-        'cv': {
-            title: "Pendirian CV (Persekutuan Komanditer)",
-            heroImage: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=1200",
-            desc: "Bentuk badan usaha warisan Belanda yang masih populer untuk kemitraan bisnis sederhana.",
-            benefits: ["Biaya pendirian lebih murah", "Struktur pengambilan keputusan simpel", "Tidak ada modal minimal"],
-            timeline: "3-5 Hari Kerja",
-            packages: [
-                {
-                    name: "BASIC",
-                    price: "Rp 2.500.000",
-                    features: ["Pengecekan Nama", "Akta Notaris", "SK Kemenkumham", "NPWP Badan", "NIB"]
-                },
-                {
-                    name: "LENGKAP",
-                    price: "Rp 4.000.000",
-                    recommended: true,
-                    features: ["Semua fitur BASIC", "BNRI", "Rekening Bank"]
-                }
-            ]
-        }
-    };
-
     useEffect(() => {
-        if (servicesDB[id]) {
-            setServiceData(servicesDB[id]);
+        const data = getServiceById(id);
+        if (data) {
+            setServiceData(data);
         } else {
+            // Fallback for unknown services
             setServiceData({
                 title: `Layanan ${id.replace('-', ' ').toUpperCase()}`,
-                heroImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1200",
+                heroImage: "https://images.unsplash.com/photo-1551836022-8b2858c9c69b?w=500&auto=format&fit=crop&q=80&w=600",
                 desc: "Layanan legalitas profesional untuk kebutuhan bisnis Anda. Tim kami akan membantu mengurus segala dokumen yang diperlukan.",
                 benefits: ["Konsultasi Gratis", "Proses Transparan", "Legalitas Terjamin"],
                 timeline: "Contact Us",
                 packages: [
                     {
-                        name: "STANDARD",
-                        price: "Hubungi Kami",
-                        features: ["Konsultasi Legal", "Pengurusan Dokumen Utama", "Monitoring Progress"]
+                        name: "BASIC",
+                        price: "Rp 5.500.000",
+                        features: ["Akta Pendirian", "SK Kemenkop UKM", "NPWP Badan", "NIB", "Draft AD/ART"]
+                    },
+                    {
+                        name: "LENGKAP",
+                        price: "Rp 7.500.000",
+                        recommended: true,
+                        features: ["Semua fitur BASIC", "BNRI", "Stempel", "Konsultasi Kepengurusan"]
                     }
                 ]
             });
@@ -150,18 +90,27 @@ const ServiceDetailPage = () => {
 
                 {/* Packages */}
                 <h2 className="text-3xl font-bold text-slate-900 text-center mb-10 font-serif">Pilihan Paket</h2>
-                <div className="grid md:grid-cols-3 gap-8 items-start">
+
+                {/* Use 4-column grid for NIB & NPWP, 3-column for others */}
+                <div className={`grid gap-8 items-start ${id === 'nib-npwp' ? 'md:grid-cols-2 lg:grid-cols-4' : 'md:grid-cols-3'}`}>
                     {serviceData.packages.map((pkg, idx) => (
-                        <div key={idx} className={`relative bg-white p-8 rounded-3xl border transition-all duration-300 ${pkg.recommended ? 'border-[#b8860b] shadow-2xl scale-105 z-10' : 'border-slate-100 shadow-sm hover:shadow-xl'}`}>
+                        <div key={idx} className={`relative bg-white p-8 rounded-3xl border transition-all duration-300 flex flex-col ${pkg.recommended ? 'border-[#b8860b] shadow-2xl lg:scale-105 z-10' : 'border-slate-100 shadow-sm hover:shadow-xl'}`}>
                             {pkg.recommended && (
                                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#b8860b] text-white px-4 py-1 rounded-full text-xs font-bold tracking-wider">
-                                    REKOMENDASI
+                                    TOP SELLER
                                 </div>
                             )}
-                            <h3 className="text-xl font-bold text-slate-900 mb-2 font-serif">{pkg.name}</h3>
+
+                            <div className="mb-4">
+                                <h3 className="text-xl font-bold text-slate-900 mb-2 font-serif">{pkg.name}</h3>
+                                {pkg.desc && (
+                                    <p className="text-xs text-slate-500 leading-relaxed">{pkg.desc}</p>
+                                )}
+                            </div>
+
                             <div className="text-3xl font-bold text-slate-900 mb-6">{pkg.price}</div>
 
-                            <ul className="space-y-4 mb-8">
+                            <ul className="space-y-4 mb-6 flex-grow">
                                 {pkg.features.map((feat, fIdx) => (
                                     <li key={fIdx} className="flex items-start gap-3 text-sm text-slate-600">
                                         <CheckCircle2 className="text-[#b8860b] shrink-0 w-5 h-5" />
@@ -169,6 +118,15 @@ const ServiceDetailPage = () => {
                                     </li>
                                 ))}
                             </ul>
+
+                            {pkg.note && (
+                                <div className="mb-6 p-3 bg-amber-50 border border-amber-200 rounded-xl">
+                                    <div className="flex items-start gap-2">
+                                        <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                                        <p className="text-xs text-amber-800 leading-relaxed">{pkg.note}</p>
+                                    </div>
+                                </div>
+                            )}
 
                             <button className={`w-full py-4 rounded-xl font-bold transition-all ${pkg.recommended ? 'bg-[#b8860b] text-white hover:bg-[#9a7009] shadow-lg hover:shadow-[#b8860b]/30' : 'bg-slate-100 text-slate-800 hover:bg-slate-200'}`}>
                                 Konsultasi Paket Ini

@@ -40,7 +40,7 @@ const Layout = ({ children }) => {
                                 <Scale className="text-white w-6 h-6" />
                             </div>
                             <div className="flex flex-col">
-                                <span className={`text-xl font-bold tracking-tight leading-none ${scrolled ? 'text-slate-900' : 'text-slate-900 lg:text-white'}`}>
+                                <span className={`text-xl font-bold tracking-tight leading-none ${scrolled ? 'text-slate-900' : 'text-white lg:text-white'}`}>
                                     LEGAL<span className="text-[#b8860b]">PRO</span>
                                 </span>
                                 <span className={`text-[10px] tracking-widest uppercase ${scrolled ? 'text-slate-500' : 'text-slate-400 lg:text-slate-200'}`}>Legalitas Terpercaya</span>
@@ -71,7 +71,7 @@ const Layout = ({ children }) => {
 
                         {/* Mobile Toggle */}
                         <div className="md:hidden">
-                            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={`p-2 rounded-lg ${scrolled ? 'text-slate-900' : 'text-slate-900 lg:text-white'}`}>
+                            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={`p-2 rounded-lg ${scrolled ? 'text-slate-900' : 'text-white lg:text-white'}`}>
                                 {isMenuOpen ? <X /> : <Menu />}
                             </button>
                         </div>
@@ -133,7 +133,7 @@ const Layout = ({ children }) => {
                             <ul className="space-y-4 text-sm">
                                 <li><Link to="/layanan/pt-perorangan" className="hover:text-[#b8860b] transition-colors flex items-center gap-2"><ChevronRight size={14} /> Pendirian PT</Link></li>
                                 <li><Link to="/layanan/cv" className="hover:text-[#b8860b] transition-colors flex items-center gap-2"><ChevronRight size={14} /> Pendirian CV</Link></li>
-                                <li><Link to="/pricelist" className="hover:text-[#b8860b] transition-colors flex items-center gap-2"><ChevronRight size={14} /> Izin Usaha (NIB)</Link></li>
+                                <li><Link to="/layanan/nib-npwp" className="hover:text-[#b8860b] transition-colors flex items-center gap-2"><ChevronRight size={14} /> Izin Usaha (NIB)</Link></li>
                                 <li><Link to="/layanan/pt-pma" className="hover:text-[#b8860b] transition-colors flex items-center gap-2"><ChevronRight size={14} /> Konsultasi Hukum</Link></li>
                             </ul>
                         </div>
@@ -171,7 +171,7 @@ const Layout = ({ children }) => {
             {/* Floating CTA */}
             <div className="fixed bottom-8 right-8 z-40">
                 <a href="https://wa.me/" target="_blank" rel="noreferrer" className="flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-2xl hover:scale-110 hover:shadow-[#25D366]/40 transition-all duration-300 relative group">
-                    <div className="absolute inset-0 bg-white/20 rounded-full animate-ping opacity-75"></div>
+                    <div className="absolute inset-0 bg-green-400/50 rounded-full animate-ping opacity-75"></div>
                     <MessageSquare fill="white" size={24} className="relative z-10" />
                     <span className="absolute right-16 bg-white text-slate-800 px-3 py-1 rounded-lg text-xs font-bold shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                         Chat WhatsApp
