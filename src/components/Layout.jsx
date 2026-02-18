@@ -169,7 +169,7 @@ const Layout = ({ children }) => {
             </footer>
 
             {/* Floating CTA */}
-            <div className="fixed bottom-8 right-8 z-40">
+            <div className="fixed bottom-8 right-10 z-40">
                 <a href="https://wa.me/621321245011" target="_blank" rel="noreferrer" className="flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-2xl hover:scale-110 hover:shadow-[#25D366]/40 transition-all duration-300 relative group">
                     <div className="absolute inset-0 bg-green-400/50 rounded-full animate-ping opacity-75"></div>
                     <MessageSquare fill="white" size={24} className="relative z-10" />
