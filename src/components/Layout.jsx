@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
-    Scale,
     Menu,
     X,
     Bot,
@@ -35,16 +34,13 @@ const Layout = ({ children }) => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16">
                         {/* Logo */}
-                        <Link to="/" className="flex items-center gap-3 group">
-                            <div className="p-2.5 bg-slate-900 rounded-xl group-hover:bg-[#b8860b] transition-colors duration-300 shadow-lg">
-                                <Scale className="text-white w-6 h-6" />
-                            </div>
-                            <div className="flex flex-col">
-                                <span className={`text-xl font-bold tracking-tight leading-none ${scrolled ? 'text-slate-900' : 'text-white lg:text-white'}`}>
-                                    SOLUSI<span className="text-[#b8860b]">NIB</span>
-                                </span>
-                                <span className={`text-[10px] tracking-widest uppercase ${scrolled ? 'text-slate-500' : 'text-slate-400 lg:text-slate-200'}`}>solusinib.online</span>
-                            </div>
+                        <Link to="/" className="flex items-center gap-1 group">
+                            <img
+                                src="/assets/images/solusinib.png"
+                                alt="SolusiNIB Logo"
+                                className={`h-10 w-auto object-contain transition-all bg-none duration-300 ${scrolled ? 'invert' : ''}`}
+                            />
+
                         </Link>
 
                         {/* Desktop Menu */}
@@ -108,11 +104,12 @@ const Layout = ({ children }) => {
                 <div className="max-w-7xl mx-auto px-4 relative z-10">
                     <div className="grid md:grid-cols-4 gap-12 mb-16">
                         <div className="col-span-2 space-y-6">
-                            <div className="flex items-center gap-2">
-                                <Scale className="text-[#b8860b] w-8 h-8" />
-                                <span className="text-2xl font-bold tracking-tight text-white font-serif">
-                                    SOLUSI<span className="text-[#b8860b]">NIB</span><span className="text-slate-400 text-sm font-normal">.online</span>
-                                </span>
+                            <div className="flex items-center gap-1">
+                                <img
+                                    src="/assets/images/solusinib.png"
+                                    alt="SolusiNIB Logo"
+                                    className="h-12 w-auto object-contain"
+                                />
                             </div>
                             <p className="text-slate-400 text-sm max-w-md leading-relaxed">
                                 SolusiNIB.online hadir sebagai platform legalitas digital terpercaya. Kami membantu pengusaha Indonesia mengurus NIB, NPWP, pendirian PT, CV, dan izin usaha dengan mudah, cepat, dan transparan.
@@ -169,7 +166,7 @@ const Layout = ({ children }) => {
             </footer>
 
             {/* Floating CTA */}
-            <div className="fixed bottom-8 right-10 z-40">
+            <div className="fixed bottom-8 right-12 z-40">
                 <a href="https://wa.me/621321245011" target="_blank" rel="noreferrer" className="flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-2xl hover:scale-110 hover:shadow-[#25D366]/40 transition-all duration-300 relative group">
                     <div className="absolute inset-0 bg-green-400/50 rounded-full animate-ping opacity-75"></div>
                     <MessageSquare fill="white" size={24} className="relative z-10" />
