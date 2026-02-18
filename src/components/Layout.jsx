@@ -41,9 +41,9 @@ const Layout = ({ children }) => {
                             </div>
                             <div className="flex flex-col">
                                 <span className={`text-xl font-bold tracking-tight leading-none ${scrolled ? 'text-slate-900' : 'text-white lg:text-white'}`}>
-                                    LEGAL<span className="text-[#b8860b]">PRO</span>
+                                    SOLUSI<span className="text-[#b8860b]">NIB</span>
                                 </span>
-                                <span className={`text-[10px] tracking-widest uppercase ${scrolled ? 'text-slate-500' : 'text-slate-400 lg:text-slate-200'}`}>Legalitas Terpercaya</span>
+                                <span className={`text-[10px] tracking-widest uppercase ${scrolled ? 'text-slate-500' : 'text-slate-400 lg:text-slate-200'}`}>solusinib.online</span>
                             </div>
                         </Link>
 
@@ -111,11 +111,11 @@ const Layout = ({ children }) => {
                             <div className="flex items-center gap-2">
                                 <Scale className="text-[#b8860b] w-8 h-8" />
                                 <span className="text-2xl font-bold tracking-tight text-white font-serif">
-                                    LEGAL<span className="text-[#b8860b]">PRO</span>
+                                    SOLUSI<span className="text-[#b8860b]">NIB</span><span className="text-slate-400 text-sm font-normal">.online</span>
                                 </span>
                             </div>
                             <p className="text-slate-400 text-sm max-w-md leading-relaxed">
-                                Kami menghadirkan solusi legalitas bisnis dengan standar korporasi profesional. Membantu pengusaha Indonesia bertumbuh dengan pondasi hukum yang kuat.
+                                SolusiNIB.online hadir sebagai platform legalitas digital terpercaya. Kami membantu pengusaha Indonesia mengurus NIB, NPWP, pendirian PT, CV, dan izin usaha dengan mudah, cepat, dan transparan.
                             </p>
                             <div className="flex gap-4 pt-2">
                                 {/* Social placeholders */}
@@ -147,18 +147,18 @@ const Layout = ({ children }) => {
                                 </li>
                                 <li className="flex gap-3 items-center">
                                     <Mail className="text-[#b8860b] shrink-0" size={18} />
-                                    <span>hello@legalpro.id</span>
+                                    <span>hello@solusinib.online</span>
                                 </li>
                                 <li className="flex gap-3 items-center">
                                     <Phone className="text-[#b8860b] shrink-0" size={18} />
-                                    <span>+62 21 5555 8888</span>
+                                    <span>+6213 2124 5011</span>
                                 </li>
                             </ul>
                         </div>
                     </div>
 
                     <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-                        <p>© 2024 LegalPro Indonesia. All rights reserved.</p>
+                        <p>© 2025 SolusiNIB.online. All rights reserved.</p>
                         <div className="flex gap-8">
                             <Link to="#" className="hover:text-white transition-colors">Privacy Policy</Link>
                             <Link to="#" className="hover:text-white transition-colors">Terms of Service</Link>
@@ -170,7 +170,7 @@ const Layout = ({ children }) => {
 
             {/* Floating CTA */}
             <div className="fixed bottom-8 right-8 z-40">
-                <a href="https://wa.me/" target="_blank" rel="noreferrer" className="flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-2xl hover:scale-110 hover:shadow-[#25D366]/40 transition-all duration-300 relative group">
+                <a href="https://wa.me/621321245011" target="_blank" rel="noreferrer" className="flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-2xl hover:scale-110 hover:shadow-[#25D366]/40 transition-all duration-300 relative group">
                     <div className="absolute inset-0 bg-green-400/50 rounded-full animate-ping opacity-75"></div>
                     <MessageSquare fill="white" size={24} className="relative z-10" />
                     <span className="absolute right-16 bg-white text-slate-800 px-3 py-1 rounded-lg text-xs font-bold shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">

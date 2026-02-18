@@ -264,7 +264,7 @@ const HomePage = () => {
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Dalam Saku Anda.</span>
                             </h2>
                             <p className="text-slate-400 mb-8 leading-relaxed text-lg">
-                                Tidak perlu menunggu jam kerja untuk bertanya. LegalAI Assistant kami dilatih dengan ribuan peraturan perundang-undangan terbaru (UU Cipta Kerja) untuk menjawab keraguan Anda secara instan.
+                                Tidak perlu menunggu jam kerja untuk bertanya. SolusiAI Assistant kami dilatih dengan ribuan peraturan perundang-undangan terbaru (UU Cipta Kerja) untuk menjawab keraguan Anda secara instan.
                             </p>
 
                             <div className="grid grid-cols-2 gap-6 mb-8">
@@ -409,7 +409,7 @@ const HomePage = () => {
                         </div>
 
                         <div>
-                            <span className="text-[#b8860b] font-bold tracking-widest uppercase text-xs mb-2 block">Kenapa LegalPro?</span>
+                            <span className="text-[#b8860b] font-bold tracking-widest uppercase text-xs mb-2 block">Kenapa SolusiNIB?</span>
                             <h2 className="text-4xl font-serif font-bold text-slate-900 mb-6">Mitra Strategis Pertumbuhan Bisnis Anda</h2>
                             <p className="text-slate-500 text-lg mb-8 leading-relaxed">
                                 Kami bukan sekadar biro jasa, melainkan konsultan yang memastikan pondasi bisnis Anda kuat secara hukum agar Anda bisa fokus pada ekspansi.

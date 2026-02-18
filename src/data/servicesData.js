@@ -116,7 +116,7 @@ export const servicesData = {
         packages: [
             {
                 name: "NIB Lokasi ter-RDTR",
-                price: "Rp 1.500.000*",
+                price: "Rp 500.000*",
                 features: [
                     "Penerbitan NIB via OSS RBA",
                     "Konsultasi tingkat risiko usaha",
@@ -128,7 +128,7 @@ export const servicesData = {
             },
             {
                 name: "NIB Lokasi non-RDTR",
-                price: "Rp 2.000.000*",
+                price: "Rp 700.000*",
                 recommended: true,
                 features: [
                     "Semua fitur NIB ter-RDTR",

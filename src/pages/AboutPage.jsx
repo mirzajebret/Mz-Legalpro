@@ -13,7 +13,7 @@ const AboutPage = () => {
                     <span className="text-[#b8860b] font-bold tracking-widest uppercase text-xs mb-4 block animate-in fade-in slide-in-from-bottom-4 duration-700">Profil Perusahaan</span>
                     <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 font-serif animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">Siapa Kami?</h1>
                     <p className="text-slate-300 max-w-2xl mx-auto text-lg leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
-                        LegalPro Indonesia hadir sebagai jembatan antara pengusaha visioner dengan kepastian hukum di Indonesia. Kami memadukan keahlian legal dengan teknologi.
+                        SolusiNIB.online hadir sebagai jembatan antara pengusaha visioner dengan kepastian hukum di Indonesia. Kami memadukan keahlian legal dengan teknologi digital untuk menghadirkan layanan legalitas yang mudah, cepat, dan terpercaya.
                     </p>
                 </div>
             </section>
