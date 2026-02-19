@@ -109,7 +109,7 @@ export const servicesData = {
     },
     'nib-npwp': {
         title: "Pengurusan NIB & NPWP",
-        heroImage: "https://images.unsplash.com/photo-1554224311-beee460201b4?auto=format&fit=crop&q=80&w=1200",
+        heroImage: "/assets/images/addon/addon-nib.webp",
         desc: "Layanan profesional untuk penerbitan NIB (Nomor Induk Berusaha) dan pembuatan NPWP untuk badan usaha maupun perorangan.",
         benefits: ["Proses cepat & mudah", "Terintegrasi OSS RBA", "Harga transparan sesuai kategori"],
         timeline: "2-5 Hari Kerja",
